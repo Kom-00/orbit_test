@@ -1,0 +1,57 @@
+Planet[] _planetArr={};
+ 
+void setup(){
+  size(1200,700);
+  frameRate(40);
+  smooth();
+  noStroke();                          
+  fill(31,63,255);
+
+  for(int i=0; i<10; i++){
+    Planet thisPla=new Planet();
+    _planetArr=(Planet[])append(_planetArr,thisPla);
+  }
+  
+}
+ 
+
+void draw(){
+  background(0);
+  noFill();
+  stroke(255);
+  for(int i=0; i<10; i++){
+    Planet thisPla=_planetArr[i];
+    thisPla.drawMe();
+  }
+
+}
+
+class Planet{
+  float x,y;
+  int counter;
+  float speed;
+  float orbit;
+  float rad;
+  
+  Planet(){
+    speed=random(0.03);
+    orbit=random(600)+100;
+    rad=random(40)+20;
+    int counter=0;
+  }
+  
+  void drawMe(){
+    x=width/2 + sin(counter*speed)*orbit;
+    y=height/2 + cos(counter*speed)*orbit;
+    counter++;
+    
+    noStroke();
+    fill(200,20,20);
+    ellipse(x,y,rad,rad);
+    
+    noFill();
+    stroke(255);
+    ellipse(width/2, height/2,orbit*2,orbit*2);
+  }
+  
+}
